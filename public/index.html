@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+<div  class="container">
+    <div class="card" ng-repeat="(key, value) in listProject">
+        <div class="action">
+            <i class="far fa-trash-alt" ng-click="onRemove(value)" ></i>
+            <i class="fas fa-pen" ng-click="onEdit(value)"></i>
+        </div>
+        <div class="name">{{value.name}}</div>
+        <div>{{value.host}}</div>
+        <button type="button" class="btn btn-success deploy" ng-click="deploy(value)">Deploy</button>
+        <div class="loading" ng-if="loading == value._id">
+            <div class="spinner-border text-success " role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div class="card add" ng-click="onAdd()" >
+        <i class="fas fa-folder-plus"></i>
+        Thêm mới
+    </div>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tạo dự án</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form ng-submit="submit()">
+                <div class="modal-body" id="modalProject">
+                    <div class="alert alert-danger"  style="display:none" id="error-project" role="alert">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Tên dự án</label>
+                        <input class="form-control" ng-model="project.name"  id="name" required>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="host" class="form-label">Host</label>
+                            <input class="form-control"  ng-model="project.host"  id="host" required>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="port" class="form-label">Port</label>
+                            <input type="number" class="form-control" ng-model="project.port"  id="port" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="port" class="form-label">Username</label>
+                            <input class="form-control"  ng-model="project.username" id="username" required>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="port" class="form-label">Password</label>
+                            <input class="form-control"  ng-model="project.password" id="password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col">
+                            <label for="port" class="form-label">Thư mục project</label>
+                            <input class="form-control"  ng-model="project.localFolder" id="localFolder" required>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="port" class="form-label">Thư mục build</label>
+                            <input class="form-control"  ng-model="project.build" id="build" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 col">
+                        <label for="port" class="form-label">Thư mục deploy server</label>
+                        <input class="form-control" ng-model="project.remoteFolder"id="remoteFolder" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous"></script>
+<script src="javascripts/main.js"></script>
+</body>
+</html>
