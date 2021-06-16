@@ -12,7 +12,7 @@ const ServerSchema = {
         build: 'string',
         buildScript: {
             type: 'string',
-            default: '',
+            default: 'npm run build:staging',
         },
         deployScript: {
             type: 'string',

@@ -1,5 +1,5 @@
 module.exports = {
     connectRealm: require('./connectRealm'),
-    deploy: require('./deploy'),
+    buildProject: require('./buildProject'),
     uploadFile: require('./uploadFile'),
 };

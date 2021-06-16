@@ -1,4 +1,4 @@
-const { uploadFile, deploy } = require('../utils')
+const { uploadFile, buildProject } = require('../utils')
 const express = require('express');
 const router = express.Router();
 const { connectRealm } = require('../utils');
@@ -68,7 +68,7 @@ router.post('/api/deploy', async (req, res) => {
 router.post('/api/build', async (req, res) => {
     try {
         const data = req.body;
-        await deploy(data.localFolder);
+        await buildProject(data.localFolder, data.buildScript);
         res.send({ success: true })
     } catch (e) {
         console.log(e);
