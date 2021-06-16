@@ -57,7 +57,7 @@ app.controller("myCtrl", function ($scope) {
 });
 
 function addProject(project, success) {
-    fetch('/server', {
+    fetch('/api/server', {
         method: 'POST', body: JSON.stringify(project),
         headers: {
             'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ function addProject(project, success) {
 }
 
 function editProject(project, success) {
-    fetch('/server', {
+    fetch('/api/server', {
         method: 'PUT', body: JSON.stringify(project),
         headers: {
             'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ function editProject(project, success) {
 function deleteProject(id, success) {
     const r = confirm("Xác nhận xóa");
     if (r) {
-        fetch(`/server/${id}`, {
+        fetch(`/api/server/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ function deleteProject(id, success) {
 }
 
 function getListProject(success) {
-    fetch('/server')
+    fetch('/api/server')
         .then(response => response.json())
         .then(data => {
             success(data)
@@ -112,7 +112,7 @@ function getListProject(success) {
 
 function deployProject(project, success, error) {
     build(project, () => {
-        fetch('/deploy', {
+        fetch('/api/deploy', {
             method: 'POST', body: JSON.stringify(project),
             headers: {
                 'Content-Type': 'application/json'
@@ -132,7 +132,7 @@ function deployProject(project, success, error) {
 }
 
 function build(project, success) {
-    fetch('/build', {
+    fetch('/api/build', {
         method: 'POST', body: JSON.stringify(project),
         headers: {
             'Content-Type': 'application/json'

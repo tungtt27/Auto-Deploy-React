@@ -33,14 +33,14 @@ body {
 }
 
 a {
-    color: #00B7FF;
+    color: #00b7ff;
 }
 
 .card {
     width: calc(33.333% - 32px);
     border-radius: 16px !important;
     margin: 16px;
-    background-color: #444B51 !important;
+    background-color: #444b51 !important;
     height: 200px;
     display: flex;
     justify-content: center;
@@ -58,7 +58,8 @@ a {
 .add {
     font-weight: 400;
     font-size: 16px;
-    text-transform: uppercase
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 i {
