@@ -47,6 +47,7 @@ a {
     align-items: center;
     color: white;
     position: relative;
+    overflow: hidden;
 }
 
 .deploy {
