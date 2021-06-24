@@ -15,11 +15,20 @@ module.exports = async (project, onError) => {
         } catch (error) {
             console.log(error, 111)
         }
+
+        let uploadInfo = {};
         client.on('upload', info => {
-            console.log(`Listener: Uploaded ${info.source}`);
+            if (uploadInfo.source !== info.source && uploadInfo.destination !== info.destination) {
+                uploadInfo = {
+                    ...info,
+                };
+                console.log(`Listener: Uploaded ${info.source}`);
+            }
         });
+
         const results = await client.uploadDir(`${project.localFolder}/${project.build}`, `${project.remoteFolder}`);
         client.end();
+
         return results;
     } catch (error) {
         client.end();
